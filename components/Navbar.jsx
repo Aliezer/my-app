@@ -32,6 +32,9 @@ function Navbar() {
                 <li className="text-sm font-medium text-slate-400 hover:text-blue-400 transition-colors">
                     <Link href="/trabajadores">Trabajadores</Link>
                 </li>
+                <li className="text-sm font-medium text-slate-400 hover:text-blue-400 transition-colors">
+                    <Link href="/tareas">Tareas</Link>
+                </li>
                 
             </ul>
         </nav>

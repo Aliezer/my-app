@@ -7,6 +7,8 @@ export default async function UsuariosPage() {
     include: { posts: true },
     orderBy: { id: 'desc' }
   });
+ 
+  const tast = await prisma.user.f
 
   // 2. Server Action para insertar (El "Método Rápido")
   async function crearUsuario(formData) {

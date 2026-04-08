@@ -4,7 +4,6 @@ import PostCardUser from '@/components/PostCardUser';
 import LoadingSpinner from '@/components/LoadingSpinner';
 import Link from 'next/link';
 
-
 export default function UsersPageWrapper() {
     return (
         <Suspense fallback={<LoadingSpinner text="Cargando usuarios...(Mostrando ejemplo de espera de carga de usuarios)" />}>
@@ -28,19 +27,18 @@ async function UsersPage() {
     const users = await loadUsers();
     return (
         <section>
-             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-6">
-            {users.map(u =>
-                <Link key={u.id} href={`/trabajadores/${u.id}`}>
-                    <PostCardUser user={u} />
-                </Link>
-            )}
-        </div>
-         <Link href="/">
-                <button className="col-span-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                    Volver a la página principal
-                </button>
-            </Link>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-6">
+                {users.map(u =>
+                    <Link key={u.id} href={`/trabajadores/${u.id}`}>
+                        <PostCardUser user={u} />
+                    </Link>
+                )}
+            </div>
+            <button className="col-span-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            >
+                Volver a la página principal
+            </button>
         </section>
-       
+
     );
 }
