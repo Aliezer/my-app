@@ -3,7 +3,15 @@ import prisma from "@/lib/prisma";
 import Link from "next/link";
 
 async function loadTasks() {
-    return await prisma.task.findMany()
+    const data = await prisma.task.findMany({
+        orderBy:{
+            createAt: 'asc',
+        },
+        // where:{
+        //     title:"asd"
+        // }
+    });
+    return data;
 }
 
 async function Tareas() {
