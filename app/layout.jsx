@@ -1,5 +1,9 @@
 import Navbar from "@/components/Navbar";
 import './globals.css'
+import { Geist } from "next/font/google";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 export const metadata = {
   title: "Mi tienda con next",
@@ -10,7 +14,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="es" className="dark">
+    <html lang="es" className={cn("dark", "font-sans", geist.variable)}>
       <head>
         <title>SGSI - Gestión de Importaciones</title>
       </head>
@@ -28,12 +32,15 @@ export default function RootLayout({ children }) {
         <div className="fixed inset-0 -z-10 h-full w-full bg-slate-950 [background:radial-gradient(125%_125%_at_50%_10%,#020617_40%,#1e3a8a_100%)] opacity-50">
         </div>
 
-        <Navbar />
-        
-        {/* Contenedor principal con padding para que el contenido no pegue a los bordes */}
-        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="flex min-h-screen">
+          {/* Sidebar izquierdo */}
+          <Navbar />
+          
+          {/* Contenido principal */}
+          <main className="flex-1 p-6 lg:pl-16 xl:pl-64 transition-all">
             {children}
-        </main>
+          </main>
+        </div>
 
       </body>
     </html>

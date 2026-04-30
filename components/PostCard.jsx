@@ -1,29 +1,31 @@
 'use client'
 
 import Link from "next/link";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
-// PostCard.jsx optimizado para fondo oscuro
 function PostCard({ post }) {
     return (
-        <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-6 shadow-sm hover:shadow-lg hover:shadow-green-500 hover:border-slate-700 transition-shadow backdrop-blur-sm">
-            <div>
+        <Card className="bg-slate-900/50 border-slate-800 hover:border-slate-700 hover:bg-slate-800/50 transition-all">
+            <CardHeader className="pb-2">
                 <Link href={`/posts/${post.id}`}>
-                    <span className="text-sm font-mono text-blue-400 hover:text-blue-300 hover:underline cursor-pointer transition-colors">
+                    <span className="text-sm font-mono text-blue-400 hover:text-blue-300 transition-colors">
                         ID: {post.id}
                     </span>
                 </Link>
-                <h3 className="text-xl font-bold text-slate-100 mt-2 line-clamp-2">
+                <CardTitle className="text-xl text-slate-100 line-clamp-2 mt-2">
                     {post.title}
-                </h3>
-            </div>
-            <button
-
-                onClick={() => alert(`Gestionando ${post.title}`) }
-                className="mt-6 w-full bg-blue-600 text-white py-2 rounded-lg font-medium hover:bg-blue-500 transition-colors shadow-lg shadow-blue-600/20"
-            >
-                Ver Detalles
-            </button>
-        </div>
+                </CardTitle>
+            </CardHeader>
+            <CardContent>
+                <Button 
+                    onClick={() => alert(`Gestionando ${post.title}`)}
+                    className="w-full mt-2"
+                >
+                    Ver Detalles
+                </Button>
+            </CardContent>
+        </Card>
     );
 }
 

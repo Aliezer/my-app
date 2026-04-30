@@ -1,50 +1,64 @@
+"use client"
+
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
+
 function Formulario({ onSubmit, title, setTitle, description, setDescription, isEditing, onDelete }) {
     return (
-        <form className="bg-slate-800 p-10 w-3/4 rounded-lg text-black" onSubmit={onSubmit}>
-            <label htmlFor="title" className="text-white font-bold mb-2 block">
-                {isEditing ? "Editar Tarea" : "Crear Nueva Tarea"}
-            </label>
-            <input
-                id="title"
-                className="border border-gray-400 p-2 mb-4 w-full text-white bg-slate-700 outline-none focus:border-blue-500"
-                type="text"
-                name="title"
-                placeholder="Título"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-            />
+        <Card className="w-full max-w-lg bg-slate-900 border-slate-800">
+            <CardHeader>
+                <CardTitle className="text-white">
+                    {isEditing ? "Editar Tarea" : "Crear Nueva Tarea"}
+                </CardTitle>
+            </CardHeader>
+            <CardContent>
+                <form onSubmit={onSubmit} className="space-y-4">
+                    <div>
+                        <label htmlFor="title" className="text-sm font-medium text-slate-300 mb-2 block">
+                            Título
+                        </label>
+                        <Input
+                            id="title"
+                            placeholder="Título"
+                            value={title}
+                            onChange={(e) => setTitle(e.target.value)}
+                            className="bg-slate-800 border-slate-700 text-white placeholder:text-slate-500"
+                        />
+                    </div>
 
-            <label htmlFor="description" className="text-white font-bold mb-2 block">
-                Descripción
-            </label>
-            <textarea
-                id="description"
-                className="border border-gray-400 p-2 mb-4 w-full text-white bg-slate-700 outline-none focus:border-blue-500"
-                name="description"
-                placeholder="Descripción"
-                rows={3}
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-            ></textarea>
+                    <div>
+                        <label htmlFor="description" className="text-sm font-medium text-slate-300 mb-2 block">
+                            Descripción
+                        </label>
+                        <Textarea
+                            id="description"
+                            placeholder="Descripción"
+                            rows={3}
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
+                            className="bg-slate-800 border-slate-700 text-white placeholder:text-slate-500"
+                        />
+                    </div>
 
-            <div className="flex justify-between">
-                <button
-                    className="bg-blue-500 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded"
-                    type="submit"
-                >
-                    {isEditing ? "Actualizar Tarea" : "Crear Tarea"}
-                </button>
-                {isEditing && (
-                    <button 
-                        type="button" // IMPORTANTE: tipo button para que no dispare el submit del form
-                        className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
-                        onClick={onDelete}
-                    >
-                        Eliminar
-                    </button>
-                )}
-            </div>
-        </form>
+                    <div className="flex gap-3 pt-2">
+                        <Button type="submit" className="flex-1">
+                            {isEditing ? "Actualizar Tarea" : "Crear Tarea"}
+                        </Button>
+                        {isEditing && (
+                            <Button 
+                                type="button"
+                                variant="destructive"
+                                onClick={onDelete}
+                            >
+                                Eliminar
+                            </Button>
+                        )}
+                    </div>
+                </form>
+            </CardContent>
+        </Card>
     );
 }
 export default Formulario;

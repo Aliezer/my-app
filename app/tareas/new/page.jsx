@@ -81,14 +81,14 @@ function NewPage() {
 
       {/* Agregamos el Modal en la vista */}
       <ConfirmModal
-        isOpen={isModalOpen}
+        open={isModalOpen}
         title="Eliminar tarea"
-        message="¿Estás seguro de que quieres eliminar esta tarea? Esta acción no se puede deshacer."
+        description="¿Estás seguro de que quieres eliminar esta tarea? Esta acción no se puede deshacer."
         confirmText="Sí, eliminar"
         cancelText="Cancelar"
-        confirmColor="red" 
-        onConfirm={confirmDelete} // Ejecuta el fetch si el usuario confirma
-        onCancel={() => setIsModalOpen(false)} // Cierra el modal si el usuario cancela
+        variant="destructive"
+        onConfirm={confirmDelete}
+        onCancel={() => setIsModalOpen(false)}
       />
     </div>
   );
